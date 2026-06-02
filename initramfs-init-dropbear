@@ -721,6 +721,9 @@ if grep -q VMware "$ROOT"/sys/devices/virtual/dmi/id/sys_vendor 2>/dev/null; the
 fi
 
 if [ -n "$KOPT_dropbear" ]; then
+	ebegin "Waiting for USB Ethernet devices (3s)"
+	sleep 3
+	eend $?
 	configure_ip
 	if [ -n "$KOPT_cryptroot" ]; then
 		setup_dropbear || echo "Failed to uncrypt root via ssh"
